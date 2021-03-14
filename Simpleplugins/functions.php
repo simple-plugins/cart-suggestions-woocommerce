@@ -8,7 +8,8 @@
  * @return array
  */
 function csw_setup_menu( $menu ) {
-	$menu['page_title'] = __( 'Cart Suggestion Settings' );
+	$menu['parent'] = 'woocommerce';
+	$menu['page_title'] = __( 'Cart Suggestion' );
 	$menu['menu_title'] = $menu['page_title'];
 
 	return $menu;
