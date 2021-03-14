@@ -1,6 +1,6 @@
 <?php
 
-
+require __DIR__ . DIRECTORY_SEPARATOR . 'vendor' . DIRECTORY_SEPARATOR . 'autoload.php';
 /**
  * Plugin Name: Cart Suggestion WooCommerce
  * Plugin URI: http://woocommerce.com/products/woocommerce_extension/
@@ -21,31 +21,23 @@
 if ( ! defined( 'ABSPATH' ) ) {
 	exit; // Exit if accessed directly
 }
+
 /**
  * Check if WooCommerce is active
  **/
 if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', get_option( 'active_plugins' ) ) ) ) {
+	$prefix = 'csw';
+	$panel  = new \TDP\OptionsKit( $prefix );
+	$panel->set_page_title(__('Cart Suggestion Settings'));
 
+	add_filter( 'csw_menu', 'csw_setup_menu' );
+	add_filter( 'csw_settings_tabs', 'csw_register_settings_tabs' );
+	add_filter( 'csw_registered_settings_sections', 'csw_register_settings_subsections' );
+	add_filter( 'csw_registered_settings', 'csw_register_settings' );
 
-	add_action( 'woocommerce_before_cart', 'cart_suggestion_message', 1 );
-
-	function cart_suggestion_message() {
-		/** @var WC_Product $product */
-		$product = wc_get_product( 11 );
-		$display = true;
-		foreach ( WC()->cart->get_cart_contents() as $item ) {
-			if ( $item['data']->get_id() == $product->get_id() ) {
-				$display = false;
-			}
-		}
-
-		if ( $display ) {
-
-			echo '<div class="woocommerce-info">Add our <a href="' . site_url() . '/cart?add-to-cart=' . $product->get_id() . '">' .
-			     $product->get_name()
-			     . '</a> for an extra ' .
-			     $product->get_price_html() . '!</div>';
-		}
-
+	$settings = get_option('csw_settings');
+	if (isset($settings) && $settings['enable'] && !empty($settings['product_id'])) {
+		add_action( 'woocommerce_before_cart', 'cart_suggestion_message', 1 );
 	}
+
 }
