@@ -1,0 +1,15 @@
+{
+    "name": "cgsmith/cart-suggestion-woocommerce",
+    "description": "Displays a simple message to encourage customers to add a product to the cart",
+    "type": "wordpress-plugin",
+    "require": {
+        "wp-user-manager/wp-optionskit": "^1.0"
+    },
+    "license": "GPLv3",
+    "authors": [
+        {
+            "name": "Chris Smith",
+            "email": "chris@cgsmith.net"
+        }
+    ]
+}
