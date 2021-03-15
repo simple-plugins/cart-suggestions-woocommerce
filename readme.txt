@@ -1,4 +1,4 @@
-=== Cart Suggestion WooCommerce ===
+=== Cart Suggestion for WooCommerce ===
 Contributors: cgsmith105
 Tags: woocommerce, cart
 Requires at least: 5.1
