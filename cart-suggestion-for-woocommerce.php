@@ -34,7 +34,7 @@ if ( in_array( 'woocommerce/woocommerce.php', apply_filters( 'active_plugins', g
 	add_filter( 'csw_settings_tabs', 'csw_register_settings_tabs' );
 	add_filter( 'csw_registered_settings_sections', 'csw_register_settings_subsections' );
 	add_filter( 'csw_registered_settings', 'csw_register_settings' );
-	add_filter( 'csw_settings_sanitize_cart_message', 'filter_cart_message', 10, 1 );
+	add_filter( 'csw_settings_sanitize_cart_message', 'csw_filter_cart_message', 10, 1 );
 	$settings = get_option('csw_settings');
 	if (isset($settings) && $settings['enable'] && !empty($settings['product_id'])) {
 		add_action( 'woocommerce_before_cart', 'cart_suggestion_message', 1 );

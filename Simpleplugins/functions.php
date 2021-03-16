@@ -104,7 +104,7 @@ function cart_suggestion_message() {
 
 }
 
-function filter_cart_message( $output ) {
+function csw_filter_cart_message( $output ) {
 	$allowed  = array('a' => array('href' => array ()), 'br' => array(), 'p' => array(), 'strong' => array());
 	return wp_kses( $output, $allowed);
 }
